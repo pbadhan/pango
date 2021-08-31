@@ -1,4 +1,4 @@
-module github.com/PaloAltoNetworks/pango
+module github.com/pbadhan/pango
 
 go 1.12
 
