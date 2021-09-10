@@ -97,6 +97,23 @@ func (n *Common) retrieve(cmd string, path []string, singular bool, singleDesc s
 		if cmd == util.Show {
 			path = path[:len(path)-1]
 		}
+		// This is not supported right now
+		//		due to the difference between the XML API response
+		//		and the running-config XML query when retrieving
+		//		an attribute.
+		//
+		// The XML API response will contain the attribute's parent
+		//		node whereas the XML query will only contain the
+		//		attribute value.
+		//
+		// For example:
+		//		XML API response (snippet):
+		//			<entry name="redis_conn_ipv4"/>
+		//			<entry name="redis_bgp_ipv4"/>
+		//		XML query response:
+		//			<name>redis_conn_ipv4</name>
+		//			<name>redis_bgp_ipv4</name>
+		namesOnly = false
 		if namesOnly {
 			if cmd == util.Get {
 				path = append(path, "@name")
